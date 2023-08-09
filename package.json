@@ -1,0 +1,33 @@
+{
+  "name": "@peggywang/fe-cli",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "fe-cli": "./src/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.0.0",
+    "compressing": "^1.9.0",
+    "glob": "^10.3.3",
+    "inquirer": "^9.2.8",
+    "semver": "^7.5.4",
+    "shelljs": "^0.8.5"
+  },
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}
