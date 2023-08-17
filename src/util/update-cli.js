@@ -3,10 +3,12 @@ import log from './log.js';
 import * as semver from 'semver';
 import inquirer from 'inquirer';
 import { waitTime } from './util.js';
+import ora from 'ora';
+import chalk from 'chalk';
 
 async function checkUpdateCli(option){
   const { packageName, version, cliName } = option;
-  log.info(`检测${cliName}最新版本中...`);
+  const spanner = ora(`检测${cliName}最新版本中...`).start();
 
   // 获取最新的版本，如果有新的, 提示更新（可选）;如果没有或者失败，直接跳过
   // 目前没有指定cli的npm仓库
@@ -23,14 +25,15 @@ async function checkUpdateCli(option){
     const needUpdate = semver.valid(lastVersion) && semver.gt(lastVersion,version);
 
     if(!needUpdate){
-      log.info('当前版本已经是最新版本');
+      spanner.succeed(chalk.green('当前版本已经是最新版本'));
       return false;
     }
+    spanner.info(`你的${cliName} 当前版本为：${version}，最新版本为：${lastVersion}`);
 
     const answers = await inquirer.prompt({
       type:"rawlist",
       name:"needUpdateCli",
-      message:`当前${cliName} 最新版本为：${lastVersion}, 你的当前版本为：${version}, 是否需要升级？`,
+      message:`需要升级吗？`,
       choices:["立即升级","暂不升级"]
     });
     const { needUpdateCli } = answers;
@@ -44,7 +47,7 @@ async function checkUpdateCli(option){
     );
     process.exit(-1);
   }else{
-    log.warn(`脚手架${cliName}当前版本为：${version}\n获取最新的版本失败`);
+    spanner.warn(chalk.yellow(`脚手架${cliName}当前版本为：${version}; 获取最新的版本失败`));
   }
 }
 
