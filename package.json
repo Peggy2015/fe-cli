@@ -1,6 +1,6 @@
 {
   "name": "@peggywang/fe-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "type": "module",
   "main": "index.js",
@@ -26,9 +26,9 @@
     "semver": "^7.5.4",
     "shelljs": "^0.8.5"
   },
-  "homepage": "",
+  "homepage": "https://github.com/Peggy2015/fe-cli",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/Peggy2015/fe-cli"
   }
 }
